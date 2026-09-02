@@ -1,0 +1,52 @@
+.welcome {
+       display: flex;
+         justify-content: center;
+         background-color: #F6DFB3;
+         align-items: center;
+         margin: 0;
+         min-height: 100vh;
+         flex-direction: column;
+         grid-gap: 1rem;
+}
+#welcome h1 {
+    font-size: 2.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+#welcome p {
+    font-size: 1.2rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.welcome-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.6rem;
+    color: #fff;
+    background-color: #DBA5AB;
+    border: none;
+    border-radius: 5px;
+    justify-content: center;
+    cursor: pointer;
+    align-self: center;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    text-decoration: underline wavy yellow 2px;
+    text-decoration-style: dotted;
+    font-weight: bold;
+    color: #a08ecf;
+
+}
+
+
+.morning-page {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
