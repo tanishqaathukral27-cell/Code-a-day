@@ -294,3 +294,20 @@ section {
     padding: 12px 25px;
     cursor: pointer;
 }
+
+/* Welcome Page */
+.welcome {
+    display: grid;
+    justify-content: center;
+    min-height: 100vh;
+    
+}
+
+.welcome-content {
+    display: grid;
+    align-content: center;
+}
+
+.welcomeh {
+    font-size: 50px;
+}
