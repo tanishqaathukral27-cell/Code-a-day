@@ -850,3 +850,2017 @@ padding: 40px;
         transform: translateY(-7px);
     }
 }
+
+/* MISTY LOADING PAGE */
+
+#morningloading3 {
+    background-color: #dceff0;
+
+    background-image:
+        radial-gradient(rgba(70, 130, 140, 0.10) 1px, transparent 1px),
+        radial-gradient(rgba(80, 150, 160, 0.06) 1px, transparent 1px);
+
+    background-size: 20px 20px, 34px 34px;
+
+    position: relative;
+    overflow: hidden;
+}
+
+#morningloading3 .morning-loading-content {
+    position: relative;
+
+    border: 2px solid #4d8588;
+    border-radius: 25px;
+
+    padding: 40px 60px;
+
+    background: rgba(245, 252, 252, 0.75);
+
+    box-shadow: 5px 5px 0 rgba(77, 133, 136, 0.15);
+}
+
+#morningloading3 .morning-loading-content::before {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    border-radius: 50%;
+
+    background: rgba(120, 200, 205, 0.18);
+
+    top: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: -1;
+}
+
+#morningloading3 .morning-character {
+    animation: mistyFloat 3s ease-in-out infinite;
+}
+
+@keyframes mistyFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* MISTY BUBBLES */
+
+/* MISTY BUBBLES */
+
+#morningloading3::before {
+    content: "";
+
+    position: absolute;
+
+    width: 55px;
+    height: 55px;
+
+    left: 12%;
+    bottom: -60px;
+
+    border: 2px solid rgba(90, 170, 180, 0.45);
+    border-radius: 50%;
+
+    box-shadow:
+        70px 120px 0 -10px rgba(90, 170, 180, 0.25),
+        150px 40px 0 -15px rgba(90, 170, 180, 0.35),
+        230px 180px 0 -7px rgba(90, 170, 180, 0.25),
+        320px 80px 0 -12px rgba(90, 170, 180, 0.3);
+
+    animation: bubblesLeft 8s linear infinite;
+}
+
+#morningloading3::after {
+    content: "";
+
+    position: absolute;
+
+    width: 35px;
+    height: 35px;
+
+    right: 15%;
+    bottom: -40px;
+
+    border: 2px solid rgba(90, 170, 180, 0.4);
+    border-radius: 50%;
+
+    box-shadow:
+        -60px 100px 0 -5px rgba(90, 170, 180, 0.25),
+        -130px 30px 0 -10px rgba(90, 170, 180, 0.3),
+        -210px 170px 0 -3px rgba(90, 170, 180, 0.25),
+        -280px 60px 0 -8px rgba(90, 170, 180, 0.3);
+
+    animation: bubblesRight 7s linear infinite;
+}
+
+@keyframes bubblesLeft {
+    from {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.5;
+    }
+
+    80% {
+        opacity: 0.5;
+    }
+
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+@keyframes bubblesRight {
+    from {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.4;
+    }
+
+    80% {
+        opacity: 0.4;
+    }
+
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+/* SERENA LOADING PAGE */
+
+#morningloading2 {
+    position: relative;
+    overflow: hidden;
+
+    background-color: #f7e7e8;
+
+    background-image:
+        radial-gradient(rgba(170, 100, 120, 0.10) 1px, transparent 1px),
+        radial-gradient(rgba(130, 90, 100, 0.06) 1px, transparent 1px);
+
+    background-size: 20px 20px, 32px 32px;
+}
+
+#morningloading2 .morning-loading-content {
+    position: relative;
+
+    border: 2px solid #a56b7a;
+    border-radius: 25px;
+
+    padding: 40px 60px;
+
+    background: rgba(255, 249, 250, 0.78);
+
+    box-shadow: 5px 5px 0 rgba(165, 107, 122, 0.15);
+}
+
+
+/* SOFT GLOW */
+
+#morningloading2 .morning-loading-content::before {
+    content: "";
+
+    position: absolute;
+
+    width: 330px;
+    height: 330px;
+
+    border-radius: 50%;
+
+    background: rgba(236, 174, 194, 0.18);
+
+    top: 30px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: -1;
+}
+
+
+/* SERENA FLOAT */
+
+#morningloading2 .morning-character {
+    animation: serenaFloat 3.5s ease-in-out infinite;
+}
+
+@keyframes serenaFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+
+/* TEXT */
+
+#morningloading2 .morning-text {
+    margin-top: 15px;
+}
+
+#morningloading2 .morning-text h2 {
+    margin: 0 0 10px;
+
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: normal;
+}
+
+#morningloading2 .morning-text p {
+    margin: 6px 0;
+
+    font-size: 16px;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* SERENA PETALS */
+
+#morningloading2::before {
+    content: "✿   ❀        ✿      ❀";
+
+    position: absolute;
+
+    top: 12%;
+    left: 8%;
+
+    font-size: 25px;
+    letter-spacing: 18px;
+
+    color: #b8798a;
+    opacity: 0.45;
+
+    animation: petalsFloat 4s ease-in-out infinite;
+}
+
+#morningloading2::after {
+    content: "❀      ✿   ❀        ✿";
+
+    position: absolute;
+
+    bottom: 12%;
+    right: 7%;
+
+    font-size: 22px;
+    letter-spacing: 16px;
+
+    color: #b8798a;
+    opacity: 0.4;
+
+    animation: petalsFloat 5s ease-in-out infinite reverse;
+}
+
+@keyframes petalsFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(4deg);
+    }
+}
+
+/* =========================
+   MORNING PAGE
+========================= */
+
+.morning {
+    min-height: 100vh;
+    padding: 25px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background-color: #fff4c7;
+
+    background-image:
+        radial-gradient(rgba(92, 150, 180, 0.10) 1px, transparent 1px),
+        radial-gradient(rgba(245, 190, 70, 0.10) 1px, transparent 1px);
+
+    background-size: 22px 22px, 35px 35px;
+}
+
+
+/* =========================
+   MORNING HEADING
+========================= */
+
+.morning-header {
+    margin-bottom: 5px;
+    padding: 15px 35px;
+
+    border: 2px solid #6b9bb5;
+    border-radius: 18px;
+
+    background: rgba(255, 253, 242, 0.8);
+
+    box-shadow: 4px 4px 0 rgba(107, 155, 181, 0.15);
+
+    position: relative;
+    z-index: 2;
+}
+
+.morning-header h1 {
+    margin: 0 0 6px;
+
+    font-family: Georgia, serif;
+    font-size: 34px;
+    font-weight: normal;
+
+    color: #47758c;
+}
+
+.morning-header p {
+    margin: 0;
+
+    font-size: 15px;
+    font-style: italic;
+
+    color: #5d7680;
+}
+
+
+/* =========================
+   CHARACTER
+========================= */
+
+.morning .character-container {
+    width: 100%;
+    height: 220px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 5px auto 10px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.morning .character-container img {
+    height: 210px;
+    width: auto;
+
+    object-fit: contain;
+
+    animation: morningCharacterFloat 3s ease-in-out infinite;
+}
+
+@keyframes morningCharacterFloat {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+
+/* =========================
+   QUESTION CARDS
+========================= */
+
+.morning .question-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 28px;
+
+    width: 100%;
+
+    position: relative;
+    z-index: 2;
+}
+
+.morning .question-card {
+    width: 155px;
+    height: 175px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid #6b9bb5;
+    border-radius: 18px;
+
+    background: rgba(255, 253, 242, 0.9);
+
+    cursor: pointer;
+
+    box-shadow: 4px 4px 0 rgba(107, 155, 181, 0.16);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* Slightly handmade */
+
+.morning .question-card:nth-child(1) {
+    transform: rotate(-2deg);
+}
+
+.morning .question-card:nth-child(2) {
+    transform: rotate(1deg);
+}
+
+.morning .question-card:nth-child(3) {
+    transform: rotate(2deg);
+}
+
+
+.morning .question-card:hover {
+    transform: translateY(-10px) rotate(0deg);
+
+    background: #ffffff;
+
+    box-shadow: 6px 10px 0 rgba(107, 155, 181, 0.2);
+}
+
+.morning .question-card span {
+    font-family: Georgia, serif;
+    font-size: 42px;
+
+    color: #e0ad3d;
+}
+
+
+/* =========================
+   QUESTION AREA
+========================= */
+
+.morning .question-area {
+    display: none;
+
+    width: 100%;
+    max-width: 700px;
+
+    margin-top: 30px;
+    padding: 25px 35px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #6b9bb5;
+    border-radius: 20px;
+
+    background: rgba(255, 253, 242, 0.92);
+
+    box-shadow: 5px 5px 0 rgba(107, 155, 181, 0.15);
+
+    position: relative;
+    z-index: 3;
+}
+
+.morning .question-area h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: normal;
+
+    color: #47758c;
+}
+
+
+/* =========================
+   ANSWER BUTTONS
+========================= */
+
+.morning .answer-buttons {
+    display: flex;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 22px;
+}
+
+.morning .answer-buttons button {
+    padding: 10px 25px;
+
+    border: 2px solid #6b9bb5;
+    border-radius: 20px;
+
+    background: #fff4c7;
+
+    font-family: inherit;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.morning .answer-buttons button:hover {
+    transform: translateY(-3px);
+
+    background: #dff1f7;
+}
+
+
+/* =========================
+   GOOD / BAD CHOICES
+========================= */
+
+.morning .choices-area {
+    display: none;
+
+    width: 100%;
+    max-width: 750px;
+
+    margin-top: 25px;
+    padding: 25px 35px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #6b9bb5;
+    border-radius: 20px;
+
+    background: rgba(255, 253, 242, 0.94);
+
+    box-shadow: 5px 5px 0 rgba(107, 155, 181, 0.15);
+
+    position: relative;
+    z-index: 3;
+}
+
+.morning .choices-area h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: normal;
+
+    color: #47758c;
+}
+
+.morning .choice-buttons {
+    display: flex;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.morning .choice-buttons button {
+    padding: 11px 22px;
+
+    border: 2px solid #6b9bb5;
+    border-radius: 20px;
+
+    background: #fff4c7;
+
+    font-family: inherit;
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.morning .choice-buttons button:hover {
+    transform: translateY(-4px);
+
+    background: #dff1f7;
+}
+
+
+/* =========================
+   MORNING DECORATIONS
+========================= */
+
+.morning::before {
+    content: "☀     ☁          ✦";
+
+    position: absolute;
+
+    top: 9%;
+    left: 5%;
+
+    font-size: 23px;
+
+    color: #e0ad3d;
+    opacity: 0.5;
+
+    letter-spacing: 15px;
+
+    animation: morningDecor 4s ease-in-out infinite;
+}
+
+.morning::after {
+    content: "✦       ☁     ☀";
+
+    position: absolute;
+
+    bottom: 10%;
+    right: 5%;
+
+    font-size: 20px;
+
+    color: #6b9bb5;
+    opacity: 0.4;
+
+    letter-spacing: 14px;
+
+    animation: morningDecor 5s ease-in-out infinite reverse;
+}
+
+@keyframes morningDecor {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* =========================
+   AFTERNOON PAGE
+========================= */
+
+.afternoon {
+    min-height: 100vh;
+    padding: 25px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+    overflow: hidden;
+
+    /* warm afternoon sunlight */
+    background-color: #ffe0a8;
+
+    background-image:
+        radial-gradient(rgba(226, 126, 70, 0.12) 1px, transparent 1px),
+        radial-gradient(rgba(244, 174, 64, 0.12) 1px, transparent 1px);
+
+    background-size: 24px 24px, 38px 38px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.afternoon-header {
+    margin-bottom: 5px;
+    padding: 15px 35px;
+
+    border: 2px solid #d8784b;
+    border-radius: 18px;
+
+    background: rgba(255, 248, 226, 0.85);
+
+    box-shadow: 5px 5px 0 rgba(216, 120, 75, 0.18);
+
+    position: relative;
+    z-index: 2;
+}
+
+.afternoon-header h1 {
+    margin: 0 0 6px;
+
+    font-family: Georgia, serif;
+    font-size: 34px;
+    font-weight: normal;
+
+    color: #c45f3d;
+}
+
+.afternoon-header p {
+    margin: 0;
+
+    font-size: 15px;
+    font-style: italic;
+
+    color: #7d654e;
+}
+
+
+/* =========================
+   CHARACTER
+========================= */
+
+.afternoon .character-container {
+    width: 100%;
+    height: 220px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 5px auto 10px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.afternoon .character-container img {
+    height: 210px;
+    width: auto;
+
+    object-fit: contain;
+
+    animation: afternoonCharacter 3s ease-in-out infinite;
+}
+
+@keyframes afternoonCharacter {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+
+/* =========================
+   QUESTION CARDS
+========================= */
+
+.afternoon .question-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 28px;
+
+    width: 100%;
+
+    position: relative;
+    z-index: 2;
+}
+
+.afternoon .question-card {
+    width: 155px;
+    height: 175px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid #d8784b;
+    border-radius: 18px;
+
+    background: #fff5dc;
+
+    cursor: pointer;
+
+    box-shadow: 5px 5px 0 rgba(216, 120, 75, 0.18);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* handmade card positions */
+
+.afternoon .question-card:nth-child(1) {
+    transform: rotate(-3deg);
+}
+
+.afternoon .question-card:nth-child(2) {
+    transform: rotate(1deg);
+}
+
+.afternoon .question-card:nth-child(3) {
+    transform: rotate(3deg);
+}
+
+
+/* hover */
+
+.afternoon .question-card:hover {
+    transform: translateY(-10px) rotate(0deg);
+
+    background: #fffaf0;
+
+    box-shadow: 7px 11px 0 rgba(216, 120, 75, 0.22);
+}
+
+.afternoon .question-card span {
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    color: #e29a32;
+}
+
+
+/* =========================
+   QUESTION AREA
+========================= */
+
+.afternoon .question-area {
+    display: none;
+
+    width: 100%;
+    max-width: 700px;
+
+    margin-top: 30px;
+    padding: 25px 35px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #d8784b;
+    border-radius: 20px;
+
+    background: rgba(255, 248, 226, 0.94);
+
+    box-shadow: 5px 5px 0 rgba(216, 120, 75, 0.18);
+
+    position: relative;
+    z-index: 3;
+}
+
+.afternoon .question-area h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: normal;
+
+    color: #c45f3d;
+}
+
+
+/* =========================
+   ANSWER BUTTONS
+========================= */
+
+.afternoon .answer-buttons {
+    display: flex;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 22px;
+}
+
+.afternoon .answer-buttons button {
+    padding: 10px 25px;
+
+    border: 2px solid #d8784b;
+    border-radius: 20px;
+
+    background: #ffe0a8;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.afternoon .answer-buttons button:hover {
+    transform: translateY(-3px);
+
+    background: #f5c96b;
+}
+
+
+/* =========================
+   GOOD / BAD CHOICES
+========================= */
+
+.afternoon .choices-area {
+    display: none;
+
+    width: 100%;
+    max-width: 750px;
+
+    margin-top: 25px;
+    padding: 25px 35px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #d8784b;
+    border-radius: 20px;
+
+    background: rgba(255, 248, 226, 0.96);
+
+    box-shadow: 5px 5px 0 rgba(216, 120, 75, 0.18);
+
+    position: relative;
+    z-index: 3;
+}
+
+.afternoon .choices-area h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: normal;
+
+    color: #c45f3d;
+}
+
+.afternoon .choice-buttons {
+    display: flex;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.afternoon .choice-buttons button {
+    padding: 11px 22px;
+
+    border: 2px solid #d8784b;
+    border-radius: 20px;
+
+    background: #ffe0a8;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.afternoon .choice-buttons button:hover {
+    transform: translateY(-4px);
+
+    background: #f5c96b;
+}
+
+
+/* =========================
+   AFTERNOON DECORATIONS
+========================= */
+
+.afternoon::before {
+    content: "☀        ✦        ☀";
+
+    position: absolute;
+
+    top: 8%;
+    left: 5%;
+
+    font-size: 23px;
+
+    color: #e29a32;
+
+    opacity: 0.5;
+
+    letter-spacing: 15px;
+
+    animation: afternoonDecor 4s ease-in-out infinite;
+}
+
+.afternoon::after {
+    content: "☘       ✦       ☘";
+
+    position: absolute;
+
+    bottom: 9%;
+    right: 5%;
+
+    font-size: 21px;
+
+    color: #78945e;
+
+    opacity: 0.45;
+
+    letter-spacing: 15px;
+
+    animation: afternoonDecor 5s ease-in-out infinite reverse;
+}
+
+@keyframes afternoonDecor {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* =========================
+   EVENING PAGE
+========================= */
+
+.evening {
+    min-height: 100vh;
+    padding: 25px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    position: relative;
+    overflow: hidden;
+
+    /* sunset sky */
+    background-color: #f3d1c4;
+
+    background-image:
+        radial-gradient(rgba(150, 105, 150, 0.10) 1px, transparent 1px),
+        radial-gradient(rgba(225, 135, 95, 0.10) 1px, transparent 1px);
+
+    background-size: 25px 25px, 40px 40px;
+}
+
+
+/* =========================
+   EVENING HEADER
+========================= */
+
+.evening-header {
+    margin-bottom: 5px;
+    padding: 15px 35px;
+
+    border: 2px solid #a36f82;
+    border-radius: 18px;
+
+    background: rgba(255, 245, 239, 0.82);
+
+    box-shadow: 5px 5px 0 rgba(163, 111, 130, 0.17);
+
+    position: relative;
+    z-index: 2;
+}
+
+.evening-header h1 {
+    margin: 0 0 6px;
+
+    font-family: Georgia, serif;
+    font-size: 34px;
+    font-weight: normal;
+
+    color: #89596f;
+}
+
+.evening-header p {
+    margin: 0;
+
+    font-size: 15px;
+    font-style: italic;
+
+    color: #705d68;
+}
+
+
+/* =========================
+   CHARACTER
+========================= */
+
+.evening .character-container {
+    width: 100%;
+    height: 220px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 5px auto 10px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.evening .character-container img {
+    height: 210px;
+    width: auto;
+
+    object-fit: contain;
+
+    animation: eveningCharacter 4s ease-in-out infinite;
+}
+
+@keyframes eveningCharacter {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+
+/* =========================
+   QUESTION CARDS
+========================= */
+
+.evening .question-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 28px;
+
+    width: 100%;
+
+    position: relative;
+    z-index: 2;
+}
+
+.evening .question-card {
+    width: 155px;
+    height: 175px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid #a36f82;
+    border-radius: 18px;
+
+    background: rgba(255, 245, 239, 0.88);
+
+    cursor: pointer;
+
+    box-shadow: 5px 5px 0 rgba(163, 111, 130, 0.17);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* slightly softer card arrangement */
+
+.evening .question-card:nth-child(1) {
+    transform: rotate(-2deg);
+}
+
+.evening .question-card:nth-child(2) {
+    transform: rotate(1deg);
+}
+
+.evening .question-card:nth-child(3) {
+    transform: rotate(2deg);
+}
+
+.evening .question-card:hover {
+    transform: translateY(-9px) rotate(0deg);
+
+    background: #fff9f5;
+
+    box-shadow: 7px 10px 0 rgba(163, 111, 130, 0.2);
+}
+
+.evening .question-card span {
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    color: #b56d72;
+}
+
+
+/* =========================
+   QUESTION AREA
+========================= */
+
+.evening .question-area {
+    display: none;
+
+    width: 100%;
+    max-width: 700px;
+
+    margin-top: 30px;
+    padding: 25px 35px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #a36f82;
+    border-radius: 20px;
+
+    background: rgba(255, 245, 239, 0.94);
+
+    box-shadow: 5px 5px 0 rgba(163, 111, 130, 0.17);
+
+    position: relative;
+    z-index: 3;
+}
+
+.evening .question-area h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+
+    font-size: 24px;
+
+    font-weight: normal;
+
+    color: #89596f;
+}
+
+
+/* =========================
+   ANSWER BUTTONS
+========================= */
+
+.evening .answer-buttons {
+    display: flex;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 22px;
+}
+
+.evening .answer-buttons button {
+    padding: 10px 25px;
+
+    border: 2px solid #a36f82;
+    border-radius: 20px;
+
+    background: #f3d1c4;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.evening .answer-buttons button:hover {
+    transform: translateY(-3px);
+
+    background: #e5d6e8;
+}
+
+
+/* =========================
+   GOOD / BAD CHOICES
+========================= */
+
+.evening .choices-area {
+    display: none;
+
+    width: 100%;
+    max-width: 750px;
+
+    margin-top: 25px;
+    padding: 25px 35px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #a36f82;
+    border-radius: 20px;
+
+    background: rgba(255, 245, 239, 0.95);
+
+    box-shadow: 5px 5px 0 rgba(163, 111, 130, 0.17);
+
+    position: relative;
+    z-index: 3;
+}
+
+.evening .choices-area h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+
+    font-size: 23px;
+
+    font-weight: normal;
+
+    color: #89596f;
+}
+
+.evening .choice-buttons {
+    display: flex;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.evening .choice-buttons button {
+    padding: 11px 22px;
+
+    border: 2px solid #a36f82;
+    border-radius: 20px;
+
+    background: #f3d1c4;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.evening .choice-buttons button:hover {
+    transform: translateY(-4px);
+
+    background: #e5d6e8;
+}
+
+
+/* =========================
+   EVENING DECORATIONS
+========================= */
+
+.evening::before {
+    content: "☼       ✦       ☁";
+
+    position: absolute;
+
+    top: 8%;
+    left: 5%;
+
+    font-size: 23px;
+
+    color: #c27a67;
+
+    opacity: 0.45;
+
+    letter-spacing: 16px;
+
+    animation: eveningDecor 5s ease-in-out infinite;
+}
+
+.evening::after {
+    content: "✦       ☁       ✧";
+
+    position: absolute;
+
+    bottom: 9%;
+    right: 5%;
+
+    font-size: 21px;
+
+    color: #896b91;
+
+    opacity: 0.45;
+
+    letter-spacing: 15px;
+
+    animation: eveningDecor 6s ease-in-out infinite reverse;
+}
+
+@keyframes eveningDecor {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+/* =========================
+   NIGHT PAGE
+========================= */
+
+.night {
+    min-height: 100vh;
+    padding: 25px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background-color: #111a3d;
+
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+        radial-gradient(rgba(190, 190, 240, 0.14) 1px, transparent 1px);
+
+    background-size: 28px 28px, 45px 45px;
+}
+
+
+/* =========================
+   NIGHT HEADER
+========================= */
+
+.night-header {
+    margin-bottom: 5px;
+    padding: 15px 35px;
+
+    border: 2px solid #b8afd9;
+    border-radius: 18px;
+
+    background: rgba(25, 34, 72, 0.88);
+
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+
+    position: relative;
+    z-index: 2;
+}
+
+.night-header h1 {
+    margin: 0 0 6px;
+
+    font-family: Georgia, serif;
+    font-size: 34px;
+    font-weight: normal;
+
+    color: #f4eecb;
+}
+
+.night-header p {
+    margin: 0;
+
+    font-size: 15px;
+    font-style: italic;
+
+    color: #c8c5df;
+}
+
+
+/* =========================
+   CHARACTER
+========================= */
+
+.night .character-container {
+    width: 100%;
+    height: 220px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 5px auto 10px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.night .character-container img {
+    height: 210px;
+    width: auto;
+
+    object-fit: contain;
+
+    animation: nightCharacter 4s ease-in-out infinite;
+}
+
+@keyframes nightCharacter {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+}
+
+
+/* =========================
+   QUESTION CARDS
+========================= */
+
+.night .question-cards {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 28px;
+    width: 100%;
+
+    position: relative;
+    z-index: 2;
+}
+
+.night .question-card {
+    width: 155px;
+    height: 175px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid #aaa4d0;
+    border-radius: 18px;
+
+    background: rgba(30, 41, 82, 0.92);
+
+    cursor: pointer;
+
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+
+/* Slightly crooked storybook cards */
+
+.night .question-card:nth-child(1) {
+    transform: rotate(-2deg);
+}
+
+.night .question-card:nth-child(2) {
+    transform: rotate(1deg);
+}
+
+.night .question-card:nth-child(3) {
+    transform: rotate(2deg);
+}
+
+
+/* Card hover */
+
+.night .question-card:hover {
+    transform: translateY(-10px) rotate(0deg);
+
+    background: #273567;
+
+    box-shadow: 7px 11px 0 rgba(0, 0, 0, 0.3);
+}
+
+.night .question-card span {
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    color: #f4eecb;
+}
+
+
+/* =========================
+   QUESTION AREA
+========================= */
+
+.night .question-area {
+    display: none;
+
+    width: 100%;
+    max-width: 700px;
+
+    margin-top: 30px;
+    padding: 25px 35px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #aaa4d0;
+    border-radius: 20px;
+
+    background: rgba(25, 34, 72, 0.94);
+
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
+
+    position: relative;
+    z-index: 3;
+}
+
+.night .question-area h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: normal;
+
+    color: #f4eecb;
+}
+
+
+/* =========================
+   ANSWER BUTTONS
+========================= */
+
+.night .answer-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 22px;
+}
+
+.night .answer-buttons button {
+    padding: 10px 25px;
+
+    border: 2px solid #aaa4d0;
+    border-radius: 20px;
+
+    background: #e5def4;
+
+    color: #20264a;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.night .answer-buttons button:hover {
+    transform: translateY(-3px);
+
+    background: #f4eecb;
+}
+
+
+/* =========================
+   GOOD / BAD CHOICES
+========================= */
+
+.night .choices-area {
+    display: none;
+
+    width: 100%;
+    max-width: 750px;
+
+    margin-top: 25px;
+    padding: 25px 35px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #aaa4d0;
+    border-radius: 20px;
+
+    background: rgba(25, 34, 72, 0.96);
+
+    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.25);
+
+    position: relative;
+    z-index: 3;
+}
+
+.night .choices-area h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: normal;
+
+    color: #f4eecb;
+}
+
+.night .choice-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.night .choice-buttons button {
+    padding: 11px 22px;
+
+    border: 2px solid #aaa4d0;
+    border-radius: 20px;
+
+    background: #e5def4;
+
+    color: #20264a;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+}
+
+.night .choice-buttons button:hover {
+    transform: translateY(-4px);
+
+    background: #f4eecb;
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+.night::before {
+    content: "✦        ✧     ✦          ⋆";
+
+    position: absolute;
+
+    top: 8%;
+    left: 5%;
+
+    font-size: 22px;
+
+    color: #f4eecb;
+
+    opacity: 0.7;
+
+    letter-spacing: 15px;
+
+    animation: starsTwinkle 3s ease-in-out infinite;
+}
+
+.night::after {
+    content: "⋆     ✦          ✧       ✦";
+
+    position: absolute;
+
+    bottom: 9%;
+    right: 5%;
+
+    font-size: 20px;
+
+    color: #d8d3ef;
+
+    opacity: 0.65;
+
+    letter-spacing: 14px;
+
+    animation: starsTwinkle 4s ease-in-out infinite reverse;
+}
+
+
+/* =========================
+   STAR ANIMATION
+========================= */
+
+@keyframes starsTwinkle {
+
+    0%, 100% {
+        opacity: 0.35;
+    }
+
+    50% {
+        opacity: 0.9;
+    }
+
+}
+
+/* =========================
+   FINAL PAGE
+========================= */
+
+.final {
+    min-height: 100vh;
+    padding: 45px 40px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    position: relative;
+    overflow: hidden;
+
+    background-color: #f4ead5;
+
+    background-image:
+        radial-gradient(rgba(80, 60, 40, 0.08) 1px, transparent 1px),
+        radial-gradient(rgba(80, 60, 40, 0.05) 1px, transparent 1px);
+
+    background-size: 18px 18px, 30px 30px;
+}
+
+
+/* =========================
+   FINAL HEADER
+========================= */
+
+.final-header {
+    padding: 20px 45px;
+
+    border: 2px solid #2f4f2f;
+    border-radius: 20px;
+
+    background: rgba(255, 250, 235, 0.82);
+
+    box-shadow: 6px 6px 0 rgba(47, 79, 47, 0.15);
+
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 30px;
+}
+
+.final-header h1 {
+    margin: 0 0 8px;
+
+    font-family: Georgia, serif;
+    font-size: 44px;
+    font-weight: normal;
+
+    color: #2f4f2f;
+
+    letter-spacing: 1px;
+}
+
+.final-header p {
+    margin: 0;
+
+    font-size: 16px;
+    font-style: italic;
+
+    color: #66594d;
+}
+
+
+/* =========================
+   DAY SUMMARY
+========================= */
+
+.day-summary {
+    width: 100%;
+    max-width: 850px;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.summary-section {
+    min-height: 125px;
+
+    padding: 20px 25px;
+
+    box-sizing: border-box;
+
+    border: 2px solid #2f4f2f;
+    border-radius: 18px;
+
+    background: rgba(255, 250, 235, 0.78);
+
+    box-shadow: 4px 4px 0 rgba(47, 79, 47, 0.12);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* Little storybook crookedness */
+
+.summary-section:nth-child(1) {
+    transform: rotate(-1.5deg);
+}
+
+.summary-section:nth-child(2) {
+    transform: rotate(1.5deg);
+}
+
+.summary-section:nth-child(3) {
+    transform: rotate(1deg);
+}
+
+.summary-section:nth-child(4) {
+    transform: rotate(-1deg);
+}
+
+
+/* Hover */
+
+.summary-section:hover {
+    transform: translateY(-5px) rotate(0deg);
+
+    box-shadow: 7px 8px 0 rgba(47, 79, 47, 0.16);
+}
+
+
+/* =========================
+   SUMMARY TEXT
+========================= */
+
+.summary-section h2 {
+    margin: 0 0 10px;
+
+    font-family: Georgia, serif;
+    font-size: 23px;
+    font-weight: normal;
+
+    color: #8b3f4f;
+}
+
+.summary-section p {
+    margin: 0;
+
+    font-size: 15px;
+    line-height: 1.5;
+
+    color: #51483f;
+}
+
+
+/* =========================
+   DECORATIONS
+========================= */
+
+.final::before {
+    content: "✦       ✿       ✦";
+
+    position: absolute;
+
+    top: 7%;
+    left: 6%;
+
+    font-size: 22px;
+
+    color: #8b3f4f;
+
+    opacity: 0.5;
+
+    letter-spacing: 12px;
+
+    animation: finalDecor 4s ease-in-out infinite;
+}
+
+.final::after {
+    content: "✿       ✦       ✿";
+
+    position: absolute;
+
+    bottom: 7%;
+    right: 6%;
+
+    font-size: 20px;
+
+    color: #2f4f2f;
+
+    opacity: 0.45;
+
+    letter-spacing: 12px;
+
+    animation: finalDecor 5s ease-in-out infinite reverse;
+}
+
+
+@keyframes finalDecor {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+
+}
