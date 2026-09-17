@@ -2869,7 +2869,7 @@ padding: 40px;
    SPOTIFY BUTTON
 ================================ */
 
-#spotify-btn {
+.spotify-btn {
     display: block;
     margin: 30px auto 10px;
     padding: 14px 28px;
@@ -2894,29 +2894,29 @@ padding: 40px;
         background 0.2s ease;
 }
 
-#spotify-btn:hover {
+.spotify-btn:hover {
     background: #a92335;
     transform: translateY(-2px);
     box-shadow: 0 7px 0 #5f101c;
 }
 
-#spotify-btn:active {
+.spotify-btn:active {
     transform: translateY(3px);
     box-shadow: 0 2px 0 #5f101c;
 }
 
-#spotify-message {
+.spotify-message {
     margin-top: 14px;
     text-align: center;
     font-size: 15px;
 }
 
-#spotify-message a {
+.spotify-message a {
     color: #8f1d2c;
     font-weight: 600;
     text-decoration: none;
 }
 
-#spotify-message a:hover {
+.spotify-message a:hover {
     text-decoration: underline;
 }
