@@ -249,8 +249,13 @@ async function handleCallback() {
         );
 
 
-    const data =
-        await response.json();
+        const data =
+    await response.json();
+
+console.log("Spotify token response:", data);
+console.log("HTTP status:", response.status);
+
+if (data.access_token) {
 
 
     // Successful connection
