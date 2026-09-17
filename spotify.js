@@ -615,8 +615,8 @@ async function createSpotifyPlaylist() {
         // ================================
 
         const playlistResponse =
-    await fetch(
-        "https://api.spotify.com/v1/me/playlists",
+            await fetch(
+                "https://api.spotify.com/v1/me/playlists",
                 {
 
                     method: "POST",
@@ -729,15 +729,27 @@ async function createSpotifyPlaylist() {
         // SUCCESS
         // ================================
 
-        showSpotifyMessage(
-            "Playlist created!",
-            "Your Code-a-Day playlist is ready on Spotify."
-        );
+       showSpotifyMessage(
+    "Playlist created!",
+    "Your Code-a-Day playlist is ready on Spotify."
+);
 
+const spotifyLink =
+    playlistData.external_urls.spotify;
 
-        console.log(
-            "Code-a-Day Spotify playlist created!"
-        );
+const spotifyMessage =
+    document.getElementById("spotify-message");
+
+if (spotifyMessage) {
+
+    spotifyMessage.innerHTML =
+        `Your playlist is ready! <a href="${spotifyLink}" target="_blank">Open it on Spotify →</a>`;
+
+}
+
+console.log(
+    "Code-a-Day Spotify playlist created!"
+);
 
     }
 
