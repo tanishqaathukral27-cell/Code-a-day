@@ -424,6 +424,52 @@ function showSpotifyMessage(
 // ================================
 // CREATE SPOTIFY PLAYLIST
 // ================================
+const musicVibes = {
+
+    // MORNING
+
+    "Have a proper breakfast.": "happy morning",
+    "Get ready while listening to music.": "upbeat morning",
+    "Take some quiet time before starting the day": "peaceful morning",
+
+    "Keep snoozing your alarm.": "sleepy morning",
+    "Scroll through your phone instead of getting ready.": "lazy morning",
+    "Rush through the morning without eating.": "chaotic morning",
+
+
+    // AFTERNOON
+
+    "Have lunch and take a proper break": "feel good afternoon",
+    "Get some work done before relaxing": "focus chill",
+    "Go out and do something fun": "fun afternoon",
+
+    "Put everything off until later": "lazy afternoon",
+    "Spend the whole afternoon scrolling": "chill bedroom pop",
+    "Forget to take a break and burn yourself out": "overwhelmed chill",
+
+
+    // EVENING
+
+    "Go for an evening walk": "sunset chill",
+    "Hang out with friends or family": "feel good friends",
+    "Do something you've been looking forward to": "excited feel good",
+
+    "Stay in your room all evening": "quiet evening",
+    "Keep scrolling instead of doing anything": "lazy evening",
+    "Leave everything until the last minute": "late evening chaos",
+
+
+    // NIGHT
+
+    "Watch something comforting before bed": "comforting night",
+    "Write down how your day went": "late night reflective",
+    "Put your phone away and wind down": "peaceful night",
+
+    "Stay up scrolling for hours": "late night chill",
+    "Procrastinate until way too late": "late night chaos",
+    "Go to bed without winding down": "dreamy night"
+
+};
 
 async function createSpotifyPlaylist() {
 
@@ -549,8 +595,11 @@ async function createSpotifyPlaylist() {
 
         for (const choice of choices) {
 
-            const searchQuery =
-                encodeURIComponent(choice);
+           const vibe =
+    musicVibes[choice] || choice;
+
+const searchQuery =
+    encodeURIComponent(vibe);
 
 
             const searchResponse =
