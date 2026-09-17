@@ -386,13 +386,24 @@ document.addEventListener(
 
         if (spotifyButton) {
 
-            spotifyButton.addEventListener(
-                "click",
-                loginWithSpotify
-            );
-spotifyButton.addEventListener(
-    "dblclick",
-    createSpotifyPlaylist
+           spotifyButton.addEventListener(
+    "click",
+    function() {
+
+        const accessToken =
+            localStorage.getItem("spotify_access_token");
+
+        if (accessToken) {
+
+            createSpotifyPlaylist();
+
+        } else {
+
+            loginWithSpotify();
+
+        }
+
+    }
 );
             console.log(
                 "Spotify button connected."
