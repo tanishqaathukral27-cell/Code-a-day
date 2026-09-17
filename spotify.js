@@ -1,3 +1,7 @@
+// ================================
+// SPOTIFY SETTINGS
+// ================================
+
 const clientId = "f1b95c39c3824794a14b55f49d6f10f4";
 
 const redirectUri =
@@ -6,49 +10,55 @@ const redirectUri =
 const scope = "playlist-modify-private";
 
 
-// =========================
-// GENERATE RANDOM STRING
-// =========================
+// ================================
+// GENERATE RANDOM STATE
+// ================================
 
 function generateRandomString(length) {
+
     const characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     let result = "";
 
     for (let i = 0; i < length; i++) {
+
         result += characters.charAt(
             Math.floor(Math.random() * characters.length)
         );
+
     }
 
     return result;
 }
 
 
-// =========================
+// ================================
 // GENERATE PKCE VERIFIER
-// =========================
+// ================================
 
 function generateCodeVerifier(length) {
+
     const possible =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
 
     let verifier = "";
 
     for (let i = 0; i < length; i++) {
+
         verifier += possible.charAt(
             Math.floor(Math.random() * possible.length)
         );
+
     }
 
     return verifier;
 }
 
 
-// =========================
+// ================================
 // GENERATE PKCE CHALLENGE
-// =========================
+// ================================
 
 async function generateCodeChallenge(codeVerifier) {
 
@@ -72,9 +82,9 @@ async function generateCodeChallenge(codeVerifier) {
 }
 
 
-// =========================
-// SPOTIFY LOGIN
-// =========================
+// ================================
+// LOGIN WITH SPOTIFY
+// ================================
 
 async function loginWithSpotify() {
 
@@ -83,6 +93,7 @@ async function loginWithSpotify() {
 
     const state =
         generateRandomString(16);
+
 
     localStorage.setItem(
         "spotify_code_verifier",
@@ -94,33 +105,54 @@ async function loginWithSpotify() {
         state
     );
 
+
     const codeChallenge =
         await generateCodeChallenge(codeVerifier);
+
 
     const authUrl =
         "https://accounts.spotify.com/authorize";
 
+
     const params =
         new URLSearchParams({
+
             response_type: "code",
-            client_id: clientId,
-            scope: scope,
-            state: state,
-            code_challenge_method: "S256",
-            code_challenge: codeChallenge,
-            redirect_uri: redirectUri
+
+            client_id:
+                clientId,
+
+            scope:
+                scope,
+
+            state:
+                state,
+
+            code_challenge_method:
+                "S256",
+
+            code_challenge:
+                codeChallenge,
+
+            redirect_uri:
+                redirectUri
+
         });
 
-    console.log("Redirecting to Spotify...");
+
+    console.log(
+        "Redirecting to Spotify..."
+    );
+
 
     window.location.href =
         `${authUrl}?${params.toString()}`;
 }
 
 
-// =========================
-// HANDLE CALLBACK
-// =========================
+// ================================
+// HANDLE SPOTIFY CALLBACK
+// ================================
 
 async function handleCallback() {
 
@@ -128,6 +160,7 @@ async function handleCallback() {
         new URLSearchParams(
             window.location.search
         );
+
 
     const code =
         params.get("code");
@@ -139,7 +172,7 @@ async function handleCallback() {
         params.get("error");
 
 
-    // User cancelled Spotify access
+    // User cancelled Spotify login
 
     if (error) {
 
@@ -169,12 +202,15 @@ async function handleCallback() {
     }
 
 
-    // Check state
+    // ================================
+    // CHECK STATE
+    // ================================
 
     const savedState =
         localStorage.getItem(
             "spotify_state"
         );
+
 
     if (
         !savedState ||
@@ -194,12 +230,15 @@ async function handleCallback() {
     }
 
 
-    // Get PKCE verifier
+    // ================================
+    // GET PKCE VERIFIER
+    // ================================
 
     const codeVerifier =
         localStorage.getItem(
             "spotify_code_verifier"
         );
+
 
     if (!codeVerifier) {
 
@@ -216,7 +255,9 @@ async function handleCallback() {
     }
 
 
-    // Exchange authorization code for access token
+    // ================================
+    // EXCHANGE CODE FOR TOKEN
+    // ================================
 
     try {
 
@@ -224,29 +265,36 @@ async function handleCallback() {
             await fetch(
                 "https://accounts.spotify.com/api/token",
                 {
+
                     method: "POST",
 
                     headers: {
+
                         "Content-Type":
                             "application/x-www-form-urlencoded"
+
                     },
 
-                    body: new URLSearchParams({
-                        client_id:
-                            clientId,
+                    body:
+                        new URLSearchParams({
 
-                        grant_type:
-                            "authorization_code",
+                            client_id:
+                                clientId,
 
-                        code:
-                            code,
+                            grant_type:
+                                "authorization_code",
 
-                        redirect_uri:
-                            redirectUri,
+                            code:
+                                code,
 
-                        code_verifier:
-                            codeVerifier
-                    })
+                            redirect_uri:
+                                redirectUri,
+
+                            code_verifier:
+                                codeVerifier
+
+                        })
+
                 }
             );
 
@@ -266,21 +314,25 @@ async function handleCallback() {
         );
 
 
-        // Authentication failed
+        // ================================
+        // AUTHENTICATION FAILED
+        // ================================
 
         if (!response.ok) {
 
             showSpotifyMessage(
                 "Spotify authentication failed.",
                 data.error_description ||
-                "Spotify could not complete the authentication."
+                "Spotify could not complete authentication."
             );
 
             return;
         }
 
 
-        // Authentication successful
+        // ================================
+        // AUTHENTICATION SUCCESSFUL
+        // ================================
 
         if (data.access_token) {
 
@@ -288,6 +340,7 @@ async function handleCallback() {
                 "spotify_access_token",
                 data.access_token
             );
+
 
             localStorage.removeItem(
                 "spotify_state"
@@ -298,48 +351,41 @@ async function handleCallback() {
             );
 
 
-            showSpotifyMessage(
-                "Spotify connected!",
-                "You're ready to create your playlist."
-            );
-
-
             console.log(
                 "Spotify connected!"
             );
 
-        } else {
 
-            showSpotifyMessage(
-                "Spotify authentication failed.",
-                "No access token was returned."
-            );
+            // Return to final page
 
-            console.log(
-                "No access token received.",
-                data
-            );
+            window.location.href =
+                "final.html";
+
         }
 
+    }
 
-    } catch (error) {
+    catch (error) {
 
         console.error(
             "Spotify request failed:",
             error
         );
 
+
         showSpotifyMessage(
             "Spotify authentication failed.",
             "Something went wrong while connecting to Spotify."
         );
+
     }
+
 }
 
 
-// =========================
-// SHOW MESSAGE
-// =========================
+// ================================
+// SHOW SPOTIFY MESSAGE
+// ================================
 
 function showSpotifyMessage(
     statusText,
@@ -358,71 +404,22 @@ function showSpotifyMessage(
 
 
     if (status) {
+
         status.textContent =
             statusText;
+
     }
 
 
     if (message) {
+
         message.textContent =
             messageText;
+
     }
+
 }
 
-
-// =========================
-// CONNECT BUTTON
-// =========================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        const spotifyButton =
-            document.getElementById(
-                "spotify-btn"
-            );
-
-
-        if (spotifyButton) {
-
-           spotifyButton.addEventListener(
-    "click",
-    function() {
-
-        const accessToken =
-            localStorage.getItem("spotify_access_token");
-
-        if (accessToken) {
-
-            createSpotifyPlaylist();
-
-        } else {
-
-            loginWithSpotify();
-
-        }
-
-    }
-);
-            console.log(
-                "Spotify button connected."
-            );
-        }
-
-
-        // Run callback only on callback.html
-
-        if (
-            window.location.pathname.endsWith(
-                "callback.html"
-            )
-        ) {
-
-            handleCallback();
-        }
-    }
-);
 
 // ================================
 // CREATE SPOTIFY PLAYLIST
@@ -431,7 +428,12 @@ document.addEventListener(
 async function createSpotifyPlaylist() {
 
     const accessToken =
-        localStorage.getItem("spotify_access_token");
+        localStorage.getItem(
+            "spotify_access_token"
+        );
+
+
+    // No Spotify token
 
     if (!accessToken) {
 
@@ -440,21 +442,41 @@ async function createSpotifyPlaylist() {
             "Please connect Spotify first."
         );
 
+        loginWithSpotify();
+
         return;
     }
 
 
-    // Get the choices from Code-a-Day
+    // ================================
+    // GET CODE-A-DAY CHOICES
+    // ================================
 
     const choices = [
-        sessionStorage.getItem("morningChoice"),
-        sessionStorage.getItem("afternoonChoice"),
-        sessionStorage.getItem("eveningChoice"),
-        sessionStorage.getItem("nightChoice")
+
+        sessionStorage.getItem(
+            "morningChoice"
+        ),
+
+        sessionStorage.getItem(
+            "afternoonChoice"
+        ),
+
+        sessionStorage.getItem(
+            "eveningChoice"
+        ),
+
+        sessionStorage.getItem(
+            "nightChoice"
+        )
+
     ].filter(Boolean);
 
 
-    console.log("Code-a-Day choices:", choices);
+    console.log(
+        "Code-a-Day choices:",
+        choices
+    );
 
 
     try {
@@ -463,20 +485,30 @@ async function createSpotifyPlaylist() {
         // GET SPOTIFY USER
         // ================================
 
-        const userResponse = await fetch(
-            "https://api.spotify.com/v1/me",
-            {
-                headers: {
-                    Authorization:
-                        `Bearer ${accessToken}`
+        const userResponse =
+            await fetch(
+                "https://api.spotify.com/v1/me",
+                {
+
+                    headers: {
+
+                        Authorization:
+                            `Bearer ${accessToken}`
+
+                    }
+
                 }
-            }
-        );
+            );
+
 
         const userData =
             await userResponse.json();
 
-        console.log("Spotify user:", userData);
+
+        console.log(
+            "Spotify user:",
+            userData
+        );
 
 
         if (!userResponse.ok) {
@@ -486,16 +518,26 @@ async function createSpotifyPlaylist() {
                 userData
             );
 
+
+            localStorage.removeItem(
+                "spotify_access_token"
+            );
+
+
             showSpotifyMessage(
                 "Spotify connection expired.",
                 "Please connect Spotify again."
             );
 
+
+            loginWithSpotify();
+
             return;
         }
 
 
-        const userId = userData.id;
+        const userId =
+            userData.id;
 
 
         // ================================
@@ -510,18 +552,26 @@ async function createSpotifyPlaylist() {
             const searchQuery =
                 encodeURIComponent(choice);
 
-            const searchResponse = await fetch(
-                `https://api.spotify.com/v1/search?q=${searchQuery}&type=track&limit=1`,
-                {
-                    headers: {
-                        Authorization:
-                            `Bearer ${accessToken}`
+
+            const searchResponse =
+                await fetch(
+                    `https://api.spotify.com/v1/search?q=${searchQuery}&type=track&limit=1`,
+                    {
+
+                        headers: {
+
+                            Authorization:
+                                `Bearer ${accessToken}`
+
+                        }
+
                     }
-                }
-            );
+                );
+
 
             const searchData =
                 await searchResponse.json();
+
 
             console.log(
                 "Spotify search:",
@@ -546,7 +596,7 @@ async function createSpotifyPlaylist() {
 
 
         // ================================
-        // CHECK IF SONGS WERE FOUND
+        // NO SONGS FOUND
         // ================================
 
         if (trackUris.length === 0) {
@@ -564,31 +614,44 @@ async function createSpotifyPlaylist() {
         // CREATE PLAYLIST
         // ================================
 
-        const playlistResponse = await fetch(
-            `https://api.spotify.com/v1/users/${userId}/playlists`,
-            {
-                method: "POST",
+        const playlistResponse =
+            await fetch(
+                `https://api.spotify.com/v1/users/${userId}/playlists`,
+                {
 
-                headers: {
-                    Authorization:
-                        `Bearer ${accessToken}`,
+                    method: "POST",
 
-                    "Content-Type":
-                        "application/json"
-                },
+                    headers: {
 
-                body: JSON.stringify({
-                    name: "My Code-a-Day",
-                    description:
-                        "A playlist created from my Code-a-Day.",
-                    public: false
-                })
-            }
-        );
+                        Authorization:
+                            `Bearer ${accessToken}`,
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            name:
+                                "My Code-a-Day",
+
+                            description:
+                                "A playlist created from my Code-a-Day.",
+
+                            public:
+                                false
+
+                        })
+
+                }
+            );
 
 
         const playlistData =
             await playlistResponse.json();
+
 
         console.log(
             "Created playlist:",
@@ -600,6 +663,7 @@ async function createSpotifyPlaylist() {
 
             showSpotifyMessage(
                 "Playlist creation failed.",
+                playlistData.error?.message ||
                 "Spotify couldn't create your playlist."
             );
 
@@ -608,31 +672,41 @@ async function createSpotifyPlaylist() {
 
 
         // ================================
-        // ADD SONGS TO PLAYLIST
+        // ADD TRACKS
         // ================================
 
-        const addTracksResponse = await fetch(
-            `https://api.spotify.com/v1/playlists/${playlistData.id}/items`,
-            {
-                method: "POST",
+        const addTracksResponse =
+            await fetch(
+                `https://api.spotify.com/v1/playlists/${playlistData.id}/items`,
+                {
 
-                headers: {
-                    Authorization:
-                        `Bearer ${accessToken}`,
+                    method: "POST",
 
-                    "Content-Type":
-                        "application/json"
-                },
+                    headers: {
 
-                body: JSON.stringify({
-                    uris: trackUris
-                })
-            }
-        );
+                        Authorization:
+                            `Bearer ${accessToken}`,
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            uris:
+                                trackUris
+
+                        })
+
+                }
+            );
 
 
         const addTracksData =
             await addTracksResponse.json();
+
 
         console.log(
             "Added tracks:",
@@ -644,7 +718,7 @@ async function createSpotifyPlaylist() {
 
             showSpotifyMessage(
                 "Playlist created!",
-                "But Spotify couldn't add the songs."
+                "The playlist was created, but the songs couldn't be added."
             );
 
             return;
@@ -660,20 +734,93 @@ async function createSpotifyPlaylist() {
             "Your Code-a-Day playlist is ready on Spotify."
         );
 
+
         console.log(
             "Code-a-Day Spotify playlist created!"
         );
 
-    } catch (error) {
+    }
+
+    catch (error) {
 
         console.error(
             "Playlist creation error:",
             error
         );
 
+
         showSpotifyMessage(
             "Something went wrong.",
             "Check the browser console for details."
         );
+
     }
+
 }
+
+
+// ================================
+// CONNECT BUTTON
+// ================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        const spotifyButton =
+            document.getElementById(
+                "spotify-btn"
+            );
+
+
+        if (spotifyButton) {
+
+            spotifyButton.addEventListener(
+                "click",
+                function() {
+
+                    const accessToken =
+                        localStorage.getItem(
+                            "spotify_access_token"
+                        );
+
+
+                    if (accessToken) {
+
+                        createSpotifyPlaylist();
+
+                    }
+
+                    else {
+
+                        loginWithSpotify();
+
+                    }
+
+                }
+            );
+
+
+            console.log(
+                "Spotify button connected."
+            );
+
+        }
+
+
+        // ================================
+        // CALLBACK PAGE
+        // ================================
+
+        if (
+            window.location.pathname.endsWith(
+                "callback.html"
+            )
+        ) {
+
+            handleCallback();
+
+        }
+
+    }
+);
