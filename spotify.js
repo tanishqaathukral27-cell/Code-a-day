@@ -11,18 +11,15 @@ const scope = "playlist-modify-private";
 // =========================
 
 function generateRandomString(length) {
-
     const characters =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
     let result = "";
 
     for (let i = 0; i < length; i++) {
-
         result += characters.charAt(
             Math.floor(Math.random() * characters.length)
         );
-
     }
 
     return result;
@@ -34,18 +31,15 @@ function generateRandomString(length) {
 // =========================
 
 function generateCodeVerifier(length) {
-
     const possible =
         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~";
 
     let verifier = "";
 
     for (let i = 0; i < length; i++) {
-
         verifier += possible.charAt(
             Math.floor(Math.random() * possible.length)
         );
-
     }
 
     return verifier;
@@ -106,23 +100,18 @@ async function loginWithSpotify() {
     const authUrl =
         "https://accounts.spotify.com/authorize";
 
-    const params = new URLSearchParams({
+    const params =
+        new URLSearchParams({
+            response_type: "code",
+            client_id: clientId,
+            scope: scope,
+            state: state,
+            code_challenge_method: "S256",
+            code_challenge: codeChallenge,
+            redirect_uri: redirectUri
+        });
 
-        response_type: "code",
-
-        client_id: clientId,
-
-        scope: scope,
-
-        state: state,
-
-        code_challenge_method: "S256",
-
-        code_challenge: codeChallenge,
-
-        redirect_uri: redirectUri
-
-    });
+    console.log("Redirecting to Spotify...");
 
     window.location.href =
         `${authUrl}?${params.toString()}`;
@@ -150,19 +139,19 @@ async function handleCallback() {
         params.get("error");
 
 
-    // User denied Spotify access
+    // User cancelled Spotify access
 
     if (error) {
 
-        document.getElementById(
-            "spotify-status"
-        ).textContent =
-            "Spotify connection cancelled.";
+        showSpotifyMessage(
+            "Spotify connection cancelled.",
+            "You can return to Code-a-Day."
+        );
 
-        document.getElementById(
-            "spotify-message"
-        ).textContent =
-            "You can return to Code-a-Day.";
+        console.log(
+            "Spotify authorization error:",
+            error
+        );
 
         return;
     }
@@ -171,6 +160,11 @@ async function handleCallback() {
     // No authorization code
 
     if (!code) {
+
+        console.log(
+            "No Spotify authorization code found."
+        );
+
         return;
     }
 
@@ -187,15 +181,14 @@ async function handleCallback() {
         returnedState !== savedState
     ) {
 
-        document.getElementById(
-            "spotify-status"
-        ).textContent =
-            "Something went wrong.";
+        showSpotifyMessage(
+            "Spotify authentication failed.",
+            "The authorization could not be verified."
+        );
 
-        document.getElementById(
-            "spotify-message"
-        ).textContent =
-            "The Spotify authorization could not be verified.";
+        console.log(
+            "Spotify state verification failed."
+        );
 
         return;
     }
@@ -208,141 +201,172 @@ async function handleCallback() {
             "spotify_code_verifier"
         );
 
+    if (!codeVerifier) {
 
-    // Exchange authorization code
-    // for access token
-
-    const response =
-        await fetch(
-            "https://accounts.spotify.com/api/token",
-            {
-
-                method: "POST",
-
-                headers: {
-
-                    "Content-Type":
-                        "application/x-www-form-urlencoded"
-
-                },
-
-                body: new URLSearchParams({
-
-                    client_id:
-                        clientId,
-
-                    grant_type:
-                        "authorization_code",
-
-                    code:
-                        code,
-
-                    redirect_uri:
-                        redirectUri,
-
-                    code_verifier:
-                        codeVerifier
-
-                })
-
-            }
+        showSpotifyMessage(
+            "Spotify authentication failed.",
+            "The PKCE verifier could not be found."
         );
+
+        console.log(
+            "No PKCE code verifier found."
+        );
+
+        return;
+    }
+
+
+    // Exchange authorization code for access token
+
+    try {
+
+        const response =
+            await fetch(
+                "https://accounts.spotify.com/api/token",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/x-www-form-urlencoded"
+                    },
+
+                    body: new URLSearchParams({
+                        client_id:
+                            clientId,
+
+                        grant_type:
+                            "authorization_code",
+
+                        code:
+                            code,
+
+                        redirect_uri:
+                            redirectUri,
+
+                        code_verifier:
+                            codeVerifier
+                    })
+                }
+            );
 
 
         const data =
-    await response.json();
-
-console.log("Spotify token response:", data);
-console.log("HTTP status:", response.status);
-
-if (data.access_token) {
-
-
-    // Successful connection
-
-    if (data.access_token) {
-
-        localStorage.setItem(
-            "spotify_access_token",
-            data.access_token
-        );
-
-        localStorage.removeItem(
-            "spotify_state"
-        );
-
-        localStorage.removeItem(
-            "spotify_code_verifier"
-        );
-
-
-        const status =
-            document.getElementById(
-                "spotify-status"
-            );
-
-        const message =
-            document.getElementById(
-                "spotify-message"
-            );
-
-
-        if (status) {
-
-            status.textContent =
-                "Spotify connected!";
-
-        }
-
-
-        if (message) {
-
-            message.textContent =
-                "You're ready to create your playlist.";
-
-        }
+            await response.json();
 
 
         console.log(
-            "Spotify connected!"
+            "Spotify token response:",
+            data
         );
-
-    } else {
 
         console.log(
-            "Spotify connection failed."
+            "HTTP status:",
+            response.status
         );
 
-        console.log(data);
 
-        const status =
-            document.getElementById(
-                "spotify-status"
+        // Authentication failed
+
+        if (!response.ok) {
+
+            showSpotifyMessage(
+                "Spotify authentication failed.",
+                data.error_description ||
+                "Spotify could not complete the authentication."
             );
 
-        const message =
-            document.getElementById(
-                "spotify-message"
-            );
-
-
-        if (status) {
-
-            status.textContent =
-                "Something went wrong.";
-
+            return;
         }
 
 
-        if (message) {
+        // Authentication successful
 
-            message.textContent =
-                "We couldn't connect to Spotify.";
+        if (data.access_token) {
 
+            localStorage.setItem(
+                "spotify_access_token",
+                data.access_token
+            );
+
+            localStorage.removeItem(
+                "spotify_state"
+            );
+
+            localStorage.removeItem(
+                "spotify_code_verifier"
+            );
+
+
+            showSpotifyMessage(
+                "Spotify connected!",
+                "You're ready to create your playlist."
+            );
+
+
+            console.log(
+                "Spotify connected!"
+            );
+
+        } else {
+
+            showSpotifyMessage(
+                "Spotify authentication failed.",
+                "No access token was returned."
+            );
+
+            console.log(
+                "No access token received.",
+                data
+            );
         }
 
+
+    } catch (error) {
+
+        console.error(
+            "Spotify request failed:",
+            error
+        );
+
+        showSpotifyMessage(
+            "Spotify authentication failed.",
+            "Something went wrong while connecting to Spotify."
+        );
+    }
+}
+
+
+// =========================
+// SHOW MESSAGE
+// =========================
+
+function showSpotifyMessage(
+    statusText,
+    messageText
+) {
+
+    const status =
+        document.getElementById(
+            "spotify-status"
+        );
+
+    const message =
+        document.getElementById(
+            "spotify-message"
+        );
+
+
+    if (status) {
+        status.textContent =
+            statusText;
     }
 
+
+    if (message) {
+        message.textContent =
+            messageText;
+    }
 }
 
 
@@ -350,32 +374,38 @@ if (data.access_token) {
 // CONNECT BUTTON
 // =========================
 
-const spotifyButton =
-    document.getElementById(
-        "spotify-btn"
-    );
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const spotifyButton =
+            document.getElementById(
+                "spotify-btn"
+            );
 
 
-if (spotifyButton) {
+        if (spotifyButton) {
 
-    spotifyButton.addEventListener(
-        "click",
-        loginWithSpotify
-    );
+            spotifyButton.addEventListener(
+                "click",
+                loginWithSpotify
+            );
 
-}
+            console.log(
+                "Spotify button connected."
+            );
+        }
 
 
-// =========================
-// RUN CALLBACK
-// =========================
+        // Run callback only on callback.html
 
-if (
-    window.location.pathname.endsWith(
-        "callback.html"
-    )
-) {
+        if (
+            window.location.pathname.endsWith(
+                "callback.html"
+            )
+        ) {
 
-    handleCallback();
-
-}
+            handleCallback();
+        }
+    }
+);
