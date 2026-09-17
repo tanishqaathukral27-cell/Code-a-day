@@ -390,7 +390,10 @@ document.addEventListener(
                 "click",
                 loginWithSpotify
             );
-
+spotifyButton.addEventListener(
+    "dblclick",
+    createSpotifyPlaylist
+);
             console.log(
                 "Spotify button connected."
             );
@@ -409,3 +412,257 @@ document.addEventListener(
         }
     }
 );
+
+// ================================
+// CREATE SPOTIFY PLAYLIST
+// ================================
+
+async function createSpotifyPlaylist() {
+
+    const accessToken =
+        localStorage.getItem("spotify_access_token");
+
+    if (!accessToken) {
+
+        showSpotifyMessage(
+            "Spotify not connected.",
+            "Please connect Spotify first."
+        );
+
+        return;
+    }
+
+
+    // Get the choices from Code-a-Day
+
+    const choices = [
+        sessionStorage.getItem("morningChoice"),
+        sessionStorage.getItem("afternoonChoice"),
+        sessionStorage.getItem("eveningChoice"),
+        sessionStorage.getItem("nightChoice")
+    ].filter(Boolean);
+
+
+    console.log("Code-a-Day choices:", choices);
+
+
+    try {
+
+        // ================================
+        // GET SPOTIFY USER
+        // ================================
+
+        const userResponse = await fetch(
+            "https://api.spotify.com/v1/me",
+            {
+                headers: {
+                    Authorization:
+                        `Bearer ${accessToken}`
+                }
+            }
+        );
+
+        const userData =
+            await userResponse.json();
+
+        console.log("Spotify user:", userData);
+
+
+        if (!userResponse.ok) {
+
+            console.error(
+                "Could not get Spotify user:",
+                userData
+            );
+
+            showSpotifyMessage(
+                "Spotify connection expired.",
+                "Please connect Spotify again."
+            );
+
+            return;
+        }
+
+
+        const userId = userData.id;
+
+
+        // ================================
+        // SEARCH FOR SONGS
+        // ================================
+
+        const trackUris = [];
+
+
+        for (const choice of choices) {
+
+            const searchQuery =
+                encodeURIComponent(choice);
+
+            const searchResponse = await fetch(
+                `https://api.spotify.com/v1/search?q=${searchQuery}&type=track&limit=1`,
+                {
+                    headers: {
+                        Authorization:
+                            `Bearer ${accessToken}`
+                    }
+                }
+            );
+
+            const searchData =
+                await searchResponse.json();
+
+            console.log(
+                "Spotify search:",
+                choice,
+                searchData
+            );
+
+
+            if (
+                searchResponse.ok &&
+                searchData.tracks &&
+                searchData.tracks.items.length > 0
+            ) {
+
+                trackUris.push(
+                    searchData.tracks.items[0].uri
+                );
+
+            }
+
+        }
+
+
+        // ================================
+        // CHECK IF SONGS WERE FOUND
+        // ================================
+
+        if (trackUris.length === 0) {
+
+            showSpotifyMessage(
+                "No songs found.",
+                "Spotify couldn't find tracks for your choices."
+            );
+
+            return;
+        }
+
+
+        // ================================
+        // CREATE PLAYLIST
+        // ================================
+
+        const playlistResponse = await fetch(
+            `https://api.spotify.com/v1/users/${userId}/playlists`,
+            {
+                method: "POST",
+
+                headers: {
+                    Authorization:
+                        `Bearer ${accessToken}`,
+
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+                    name: "My Code-a-Day",
+                    description:
+                        "A playlist created from my Code-a-Day.",
+                    public: false
+                })
+            }
+        );
+
+
+        const playlistData =
+            await playlistResponse.json();
+
+        console.log(
+            "Created playlist:",
+            playlistData
+        );
+
+
+        if (!playlistResponse.ok) {
+
+            showSpotifyMessage(
+                "Playlist creation failed.",
+                "Spotify couldn't create your playlist."
+            );
+
+            return;
+        }
+
+
+        // ================================
+        // ADD SONGS TO PLAYLIST
+        // ================================
+
+        const addTracksResponse = await fetch(
+            `https://api.spotify.com/v1/playlists/${playlistData.id}/items`,
+            {
+                method: "POST",
+
+                headers: {
+                    Authorization:
+                        `Bearer ${accessToken}`,
+
+                    "Content-Type":
+                        "application/json"
+                },
+
+                body: JSON.stringify({
+                    uris: trackUris
+                })
+            }
+        );
+
+
+        const addTracksData =
+            await addTracksResponse.json();
+
+        console.log(
+            "Added tracks:",
+            addTracksData
+        );
+
+
+        if (!addTracksResponse.ok) {
+
+            showSpotifyMessage(
+                "Playlist created!",
+                "But Spotify couldn't add the songs."
+            );
+
+            return;
+        }
+
+
+        // ================================
+        // SUCCESS
+        // ================================
+
+        showSpotifyMessage(
+            "Playlist created!",
+            "Your Code-a-Day playlist is ready on Spotify."
+        );
+
+        console.log(
+            "Code-a-Day Spotify playlist created!"
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Playlist creation error:",
+            error
+        );
+
+        showSpotifyMessage(
+            "Something went wrong.",
+            "Check the browser console for details."
+        );
+    }
+}
